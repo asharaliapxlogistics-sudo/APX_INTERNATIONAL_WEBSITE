@@ -51,7 +51,7 @@ export default function Contact() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">
             {offices.map((o, i) => (
-              <Reveal key={o.country} delay={i * 0.1}>
+              <Reveal key={o.label} delay={i * 0.1}>
                 <div className="rounded-3xl border border-slate-100 p-8 transition-shadow hover:shadow-xl hover:shadow-brand-600/5">
                   <div className="flex items-center gap-3">
                     <Flag code={o.flag} className="h-8" />

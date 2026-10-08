@@ -93,7 +93,7 @@ export default function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-widest text-white">Get in touch</h4>
             <ul className="mt-5 space-y-4 text-sm">
               {offices.map((o) => (
-                <li key={o.country}>
+                <li key={o.label}>
                   <p className="font-semibold text-slate-200">
                     <Flag code={o.flag} className="mr-1.5 h-3.5 align-[-2px]" />
                     {o.country} · {o.label}

@@ -40,7 +40,7 @@ export default function WhatsAppButton() {
             <div className="space-y-2 p-3">
               {offices.filter((o) => o.whatsapp).map((o) => (
                 <a
-                  key={o.country}
+                  key={o.label}
                   href={`https://wa.me/${o.whatsapp}?text=${message}`}
                   target="_blank"
                   rel="noreferrer"

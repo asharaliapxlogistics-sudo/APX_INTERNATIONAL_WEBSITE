@@ -6,15 +6,19 @@ describe('company and office data', () => {
     expect(company.name).toBe('APX International')
   })
 
-  it('TC-U11: lists only the Karachi head office and the UK office (no Dubai)', () => {
-    expect(offices.map((o) => o.country)).toEqual(['Pakistan', 'United Kingdom'])
+  it('TC-U11: lists the Pakistan offices and the UK office (no Dubai)', () => {
+    expect(offices.map((o) => o.label)).toEqual(['Head office', 'Clifton branch', 'Lahore branch', 'UK office'])
     expect(JSON.stringify(offices)).not.toMatch(/Dubai|UAE|United Arab/)
   })
 
   it('TC-U12: has the confirmed addresses and phone numbers', () => {
-    const [pk, uk] = offices
+    const [pk, clifton, lahore, uk] = offices
     expect(pk.address.join(' ')).toContain('1/1-A, Night Square')
     expect(pk.phones).toEqual(['+92 21 36375691', '+92 345 3177311'])
+    expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
+    expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'])
+    expect(lahore.address.join(' ')).toContain('Zamin Centre')
+    expect(lahore.phones).toEqual(['+92 322 2049615', '+92 42 36374800'])
     expect(uk.address.join(' ')).toContain('UB7 0EB')
     expect(uk.phones).toEqual(['+44 7884 090724'])
   })
@@ -27,7 +31,7 @@ describe('company and office data', () => {
   })
 
   it('TC-U14: builds a Google Maps link from the office address', () => {
-    const link = mapsLink(offices[1])
+    const link = mapsLink(offices[3])
     expect(link).toMatch(/^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/)
     expect(decodeURIComponent(link)).toContain('450 Bath Road')
   })

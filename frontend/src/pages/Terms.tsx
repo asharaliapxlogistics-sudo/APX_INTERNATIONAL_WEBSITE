@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import LegalLayout, { type LegalSection } from '../components/LegalLayout'
 import { company, offices } from '../data/site'
 
-const [hq, uk] = offices
+const hq = offices[0]
+const uk = offices.find((o) => o.country === 'United Kingdom')!
 
 const sections: LegalSection[] = [
   {
