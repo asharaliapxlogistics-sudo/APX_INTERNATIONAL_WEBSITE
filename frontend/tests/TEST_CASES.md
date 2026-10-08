@@ -42,11 +42,11 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | ID | Test case | Expected result |
 |---|---|---|
 | TC-U10 | Company name | "APX International" |
-| TC-U11 | Offices | Karachi head office, Clifton and Lahore branches, and UK — no Dubai |
+| TC-U11 | Offices | Karachi head office, Clifton and Lahore branches, UK and USA — no Dubai |
 | TC-U12 | Addresses and phones | All office addresses and phone numbers are correct |
 | TC-U13 | WhatsApp numbers | Each matches a listed phone number |
 | TC-U14 | Directions link | Valid Google Maps link with the office address |
-| TC-U15 | Services | Five services, each with a unique link, photo, stat and points |
+| TC-U15 | Services | Four services, each with a unique link, photo, stat and points |
 
 ### Prohibited Items — `Prohibited.test.tsx`
 | ID | Test case | Expected result |
@@ -72,7 +72,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | TC-U26 | Tracking map, unknown city | Map is hidden (no broken map) |
 | TC-U27 | WhatsApp button | Opens menu with Pakistan and UK WhatsApp links and a pre-filled message |
 | TC-U28 | Navbar | All main links, Resources and Customer Portal |
-| TC-U29 | Services mega menu | Opens on hover with all 5 services and the quote card |
+| TC-U29 | Services mega menu | Opens on hover with all 4 services and the quote card |
 | TC-U30 | Footer | Privacy and Terms links, "Ready to ship?" CTA, no "Track a shipment" in the bottom line, copyright is the last line |
 
 ### Pages — `App.test.tsx`
@@ -109,7 +109,7 @@ Every test runs twice — once at laptop size and once at phone size.
 | TC-E17 | Phone menu | Lists every page including Packaging Guide and Prohibited Items; links work |
 | TC-E18 | About page world map | Country names shown (Pakistan, Brazil…), no India |
 | TC-E19 | Click a Services tab | Jumps to that service |
-| TC-E20 | Contact page offices | Karachi, Clifton, Lahore and Heathrow addresses with four Google Maps links |
+| TC-E20 | Contact page offices | Karachi, Clifton, Lahore, Heathrow and Kingwood addresses with five Google Maps links |
 
 ---
 

@@ -152,7 +152,7 @@ test.describe('Contact', () => {
     await expect(page.getByText('1/1-A, Night Square').first()).toBeVisible()
     await expect(page.getByText('450 Bath Road, Longford').first()).toBeVisible()
     const directions = page.locator('main a[href^="https://www.google.com/maps/search/"]')
-    await expect(directions).toHaveCount(4)
+    await expect(directions).toHaveCount(5)
   })
 })
 

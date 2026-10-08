@@ -7,12 +7,14 @@ describe('company and office data', () => {
   })
 
   it('TC-U11: lists the Pakistan offices and the UK office (no Dubai)', () => {
-    expect(offices.map((o) => o.label)).toEqual(['Head office', 'Clifton branch', 'Lahore branch', 'UK office'])
+    expect(offices.map((o) => o.label)).toEqual(['Head office', 'Clifton branch', 'Lahore branch', 'UK office', 'USA office'])
     expect(JSON.stringify(offices)).not.toMatch(/Dubai|UAE|United Arab/)
   })
 
   it('TC-U12: has the confirmed addresses and phone numbers', () => {
-    const [pk, clifton, lahore, uk] = offices
+    const [pk, clifton, lahore, uk, usa] = offices
+    expect(usa.address.join(' ')).toContain('6109 Moody Pines Ct')
+    expect(usa.phones).toEqual(['+1 346 213 4425'])
     expect(pk.address.join(' ')).toContain('1/1-A, Night Square')
     expect(pk.phones).toEqual(['+92 21 36375691', '+92 345 3177311'])
     expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
@@ -38,9 +40,9 @@ describe('company and office data', () => {
 })
 
 describe('services data', () => {
-  it('TC-U15: has five services, each with a unique slug, a photo and a stat', () => {
-    expect(services).toHaveLength(5)
-    expect(new Set(services.map((s) => s.slug)).size).toBe(5)
+  it('TC-U15: has four services, each with a unique slug, a photo and a stat', () => {
+    expect(services).toHaveLength(4)
+    expect(new Set(services.map((s) => s.slug)).size).toBe(4)
     for (const s of services) {
       expect(s.image).toMatch(/^\d+-[0-9a-f]+$/)
       expect(s.stat.value).toBeTruthy()

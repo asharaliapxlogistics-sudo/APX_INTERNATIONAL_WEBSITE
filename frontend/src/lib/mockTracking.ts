@@ -16,7 +16,7 @@ const ROUTES: [string, string][] = [
   ['Karachi, PK', 'Riyadh, SA'],
 ]
 
-const SERVICES = ['International Express', 'Freight & Cargo', 'Domestic Express']
+const SERVICES = ['International Express', 'Freight & Cargo']
 
 const STEPS = [
   'Shipment booked',

@@ -2,7 +2,6 @@ import {
   Plane,
   Truck,
   Ship,
-  PackageCheck,
   Warehouse,
   type LucideIcon,
 } from 'lucide-react'
@@ -64,6 +63,14 @@ export const offices: Office[] = [
     phones: ['+44 7884 090724'],
     whatsapp: '447884090724',
   },
+  {
+    country: 'United States',
+    city: 'Kingwood',
+    label: 'USA office',
+    flag: 'us',
+    address: ['6109 Moody Pines Ct', 'Kingwood, TX 77345', 'United States'],
+    phones: ['+1 346 213 4425'],
+  },
 ]
 
 export const mapsLink = (o: Office) =>
@@ -120,18 +127,6 @@ export const services: Service[] = [
     icon: Ship,
     image: '1578575437130-527eed3abbec',
     stat: { value: 'Air · Sea', label: 'Freight since 2012' },
-  },
-  {
-    slug: 'domestic-express',
-    title: 'Domestic Express',
-    short: 'Fast last-mile delivery of international imports across the country.',
-    description:
-      'Once your international imports land, we take them the last mile — express nationwide delivery with proof of delivery on every shipment.',
-    points: ['Nationwide coverage', 'Proof of delivery', 'Cash-on-delivery support'],
-    icon: PackageCheck,
-    image: '1638501478003-4e9761dcfe22',
-    imagePosition: 'center 85%',
-    stat: { value: 'Nationwide', label: 'Last-mile delivery' },
   },
   {
     slug: 'warehouse-distribution',

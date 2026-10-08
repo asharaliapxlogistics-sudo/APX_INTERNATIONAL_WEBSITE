@@ -34,7 +34,7 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          We provide international courier, freight and cargo, transportation, domestic express delivery and
+          We provide international courier, freight and cargo, transportation and
           warehousing services, either directly or through trusted carriers and partners in our network.
         </p>
         <p>

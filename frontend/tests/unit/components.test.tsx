@@ -53,10 +53,10 @@ describe('Navbar', () => {
     expect(screen.getByRole('link', { name: /Customer Portal/ })).toHaveAttribute('href', '/login')
   })
 
-  it('TC-U29: opens the services mega menu with all five services on hover', async () => {
+  it('TC-U29: opens the services mega menu with all four services on hover', async () => {
     renderAt(<Navbar />)
     await userEvent.hover(screen.getAllByRole('link', { name: /^Services/ })[0])
-    for (const slug of ['international-courier', 'transportation', 'freight-cargo', 'domestic-express', 'warehouse-distribution']) {
+    for (const slug of ['international-courier', 'transportation', 'freight-cargo', 'warehouse-distribution']) {
       expect(document.querySelector(`a[href="/services#${slug}"]`)).toBeInTheDocument()
     }
     expect(screen.getByText(/Not sure which service you need/)).toBeInTheDocument()

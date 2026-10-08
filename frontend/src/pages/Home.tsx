@@ -274,7 +274,7 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
-            <Reveal delay={0.4}>
+            <Reveal delay={0.4} className="sm:col-span-2">
               <Link
                 to="/contact"
                 className="group relative flex h-[26rem] flex-col justify-between overflow-hidden rounded-3xl bg-accent-500 p-8 text-white transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-500/30"

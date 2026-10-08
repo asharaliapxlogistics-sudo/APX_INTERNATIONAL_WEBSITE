@@ -91,12 +91,12 @@ export default function Services() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300"
           >
-            From a single document to full containers — international courier, freight, transport, domestic express and
+            From a single document to full containers — international courier, freight, transport and
             warehousing under one roof.
           </motion.p>
 
           {/* Service cards */}
-          <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {services.map((s, i) => (
               <motion.a
                 key={s.slug}
