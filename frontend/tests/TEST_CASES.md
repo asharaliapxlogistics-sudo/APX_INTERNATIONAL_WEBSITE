@@ -42,7 +42,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | ID | Test case | Expected result |
 |---|---|---|
 | TC-U10 | Company name | "APX International" |
-| TC-U11 | Offices | Karachi head office, Clifton and Lahore branches, UK and USA — no Dubai |
+| TC-U11 | Offices | Karachi head office, Clifton, Lahore and Faisalabad branches, UK and USA — no Dubai |
 | TC-U12 | Addresses and phones | All office addresses and phone numbers are correct |
 | TC-U13 | WhatsApp numbers | Each matches a listed phone number |
 | TC-U14 | Directions link | Valid Google Maps link with the office address |
@@ -109,7 +109,7 @@ Every test runs twice — once at laptop size and once at phone size.
 | TC-E17 | Phone menu | Lists every page including Packaging Guide and Prohibited Items; links work |
 | TC-E18 | About page world map | Country names shown (Pakistan, Brazil…), no India |
 | TC-E19 | Click a Services tab | Jumps to that service |
-| TC-E20 | Contact page offices | Karachi, Clifton, Lahore, Heathrow and Kingwood addresses with five Google Maps links |
+| TC-E20 | Contact page offices | Karachi, Clifton, Lahore, Faisalabad, Heathrow and Kingwood addresses with six Google Maps links |
 
 ---
 

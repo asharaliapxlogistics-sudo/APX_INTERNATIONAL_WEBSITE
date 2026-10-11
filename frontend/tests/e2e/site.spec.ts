@@ -151,8 +151,9 @@ test.describe('Contact', () => {
     await page.goto('/contact')
     await expect(page.getByText('1/1-A, Night Square').first()).toBeVisible()
     await expect(page.getByText('450 Bath Road, Longford').first()).toBeVisible()
+    await expect(page.getByText('A-63, Peoples Colony (Choti-D)').first()).toBeVisible()
     const directions = page.locator('main a[href^="https://www.google.com/maps/search/"]')
-    await expect(directions).toHaveCount(5)
+    await expect(directions).toHaveCount(6)
   })
 })
 

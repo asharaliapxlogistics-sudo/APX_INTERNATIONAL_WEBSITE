@@ -55,6 +55,15 @@ export const offices: Office[] = [
     phones: ['+92 322 2049615', '+92 42 36374800'],
   },
   {
+    country: 'Pakistan',
+    city: 'Faisalabad',
+    label: 'Faisalabad branch',
+    flag: 'pk',
+    address: ['A-63, Peoples Colony (Choti-D)', 'Faisalabad, Pakistan'],
+    phones: ['+92 41 8555422', '+92 41 8555423', '+92 323 2442410'],
+    email: 'faisalabadapx@gmail.com',
+  },
+  {
     country: 'United Kingdom',
     city: 'London',
     label: 'UK office',
