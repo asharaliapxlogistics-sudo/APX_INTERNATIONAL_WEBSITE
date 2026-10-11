@@ -40,7 +40,7 @@ export const offices: Office[] = [
   {
     country: 'Pakistan',
     city: 'Karachi',
-    label: 'Clifton branch',
+    label: 'Branch office',
     flag: 'pk',
     address: ['Shop 103 & 106, First Floor', 'Cliff Shopping Mall, Clifton', 'Karachi, Pakistan'],
     phones: ['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'],
@@ -49,7 +49,7 @@ export const offices: Office[] = [
   {
     country: 'Pakistan',
     city: 'Faisalabad',
-    label: 'Faisalabad branch',
+    label: 'Branch office',
     flag: 'pk',
     address: ['A-63, Peoples Colony (Choti-D)', 'Faisalabad, Pakistan'],
     phones: ['+92 41 8555422', '+92 41 8555423', '+92 323 2442410'],
@@ -58,7 +58,7 @@ export const offices: Office[] = [
   {
     country: 'United Kingdom',
     city: 'London',
-    label: 'UK office',
+    label: 'Branch office',
     flag: 'gb',
     address: ['450 Bath Road, Longford', 'Heathrow, England', 'UB7 0EB'],
     phones: ['+44 7884 090724'],
@@ -67,7 +67,7 @@ export const offices: Office[] = [
   {
     country: 'United States',
     city: 'Kingwood',
-    label: 'USA office',
+    label: 'Branch office',
     flag: 'us',
     address: ['6109 Moody Pines Ct', 'Kingwood, TX 77345', 'United States'],
     phones: ['+1 346 213 4425'],

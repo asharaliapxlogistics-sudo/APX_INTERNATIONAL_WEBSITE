@@ -9,10 +9,10 @@ describe('company and office data', () => {
   it('TC-U11: lists the Pakistan offices and the UK office (no Dubai)', () => {
     expect(offices.map((o) => o.label)).toEqual([
       'Head office',
-      'Clifton branch',
-      'Faisalabad branch',
-      'UK office',
-      'USA office',
+      'Branch office',
+      'Branch office',
+      'Branch office',
+      'Branch office',
     ])
     expect(JSON.stringify(offices)).not.toMatch(/Dubai|UAE|United Arab/)
   })
@@ -41,7 +41,7 @@ describe('company and office data', () => {
   })
 
   it('TC-U14: builds a Google Maps link from the office address', () => {
-    const link = mapsLink(offices.find((o) => o.label === 'UK office')!)
+    const link = mapsLink(offices.find((o) => o.country === 'United Kingdom')!)
     expect(link).toMatch(/^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/)
     expect(decodeURIComponent(link)).toContain('450 Bath Road')
   })

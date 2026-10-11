@@ -42,7 +42,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | ID | Test case | Expected result |
 |---|---|---|
 | TC-U10 | Company name | "APX International" |
-| TC-U11 | Offices | Karachi head office (P.E.C.H.S), Clifton and Faisalabad branches, UK and USA — no Dubai, no Lahore |
+| TC-U11 | Offices | Karachi head office (P.E.C.H.S), then branch offices in Clifton, Faisalabad, UK and USA — no Dubai, no Lahore |
 | TC-U12 | Addresses and phones | All office addresses and phone numbers are correct |
 | TC-U13 | WhatsApp numbers | Each matches a listed phone number |
 | TC-U14 | Directions link | Valid Google Maps link with the office address |
