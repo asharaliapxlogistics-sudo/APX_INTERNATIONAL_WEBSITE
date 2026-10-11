@@ -5,6 +5,9 @@ import { Menu, X, LogIn, LayoutDashboard, Phone, ChevronDown, PackageOpen, Ban, 
 import Logo from './Logo'
 import { company, offices, services } from '../data/site'
 
+// The head office lists no phone, so the top strip shows the first office that has one
+const mainPhone = offices.find((o) => o.phones.length > 0)!.phones[0]
+
 const thumb = (id: string, w = 160) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${w}&q=70`
 
 const links = [
@@ -100,8 +103,8 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
           <span>Providing courier & logistics services worldwide since {company.since}</span>
           <span className="flex items-center gap-5">
-            <a href={`tel:${offices[0].phones[0].replace(/\s/g, '')}`} className="flex items-center gap-1.5 hover:text-white">
-              <Phone className="h-3.5 w-3.5" /> {offices[0].phones[0]}
+            <a href={`tel:${mainPhone.replace(/\s/g, '')}`} className="flex items-center gap-1.5 hover:text-white">
+              <Phone className="h-3.5 w-3.5" /> {mainPhone}
             </a>
             <a href={`mailto:${company.email}`} className="hover:text-white">
               {company.email}

@@ -13,17 +13,22 @@ describe('company and office data', () => {
       'Branch office',
       'Branch office',
       'Branch office',
+      'Branch office',
     ])
     expect(JSON.stringify(offices)).not.toMatch(/Dubai|UAE|United Arab/)
   })
 
   it('TC-U12: has the confirmed addresses and phone numbers', () => {
-    const [pk, clifton, faisalabad, uk, usa] = offices
+    const [pk, nightSquare, clifton, faisalabad, uk, usa] = offices
     expect(usa.address.join(' ')).toContain('6109 Moody Pines Ct')
     expect(usa.phones).toEqual(['+1 346 213 4425'])
     expect(pk.address.join(' ')).toContain('187/B, Block 2, P.E.C.H.S')
     expect(pk.email).toBe('info@apxlog.com')
-    expect(pk.phones).toEqual(['+92 21 36375691', '+92 345 3177311'])
+    expect(pk.phones).toEqual([])
+    expect(nightSquare.address.join(' ')).toContain('1/1-A, Night Square')
+    expect(nightSquare.phones).toEqual(['+92 21 36375691', '+92 345 3177311'])
+    expect(nightSquare.email).toBe('info@apxlog.com')
+    expect(nightSquare.whatsapp).toBe('923453177311')
     expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
     expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'])
     expect(faisalabad.address.join(' ')).toContain('A-63, Peoples Colony (Choti-D)')

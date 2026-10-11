@@ -222,8 +222,12 @@ const sections: LegalSection[] = [
           <strong>{company.name} — {hq.label}</strong>
           <br />
           {hq.address.join(', ')}
-          <br />
-          {hq.phones.join(' · ')}
+          {hq.phones.length > 0 && (
+            <>
+              <br />
+              {hq.phones.join(' · ')}
+            </>
+          )}
           {hq.email && (
             <>
               <br />
