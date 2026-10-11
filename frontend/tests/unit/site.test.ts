@@ -10,7 +10,6 @@ describe('company and office data', () => {
     expect(offices.map((o) => o.label)).toEqual([
       'Head office',
       'Clifton branch',
-      'Lahore branch',
       'Faisalabad branch',
       'UK office',
       'USA office',
@@ -19,15 +18,14 @@ describe('company and office data', () => {
   })
 
   it('TC-U12: has the confirmed addresses and phone numbers', () => {
-    const [pk, clifton, lahore, faisalabad, uk, usa] = offices
+    const [pk, clifton, faisalabad, uk, usa] = offices
     expect(usa.address.join(' ')).toContain('6109 Moody Pines Ct')
     expect(usa.phones).toEqual(['+1 346 213 4425'])
-    expect(pk.address.join(' ')).toContain('1/1-A, Night Square')
+    expect(pk.address.join(' ')).toContain('187/B, Block 2, P.E.C.H.S')
+    expect(pk.email).toBe('info@apxlog.com')
     expect(pk.phones).toEqual(['+92 21 36375691', '+92 345 3177311'])
     expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
     expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'])
-    expect(lahore.address.join(' ')).toContain('Zamin Centre')
-    expect(lahore.phones).toEqual(['+92 322 2049615', '+92 42 36374800'])
     expect(faisalabad.address.join(' ')).toContain('A-63, Peoples Colony (Choti-D)')
     expect(faisalabad.phones).toEqual(['+92 41 8555422', '+92 41 8555423', '+92 323 2442410'])
     expect(faisalabad.email).toBe('faisalabadapx@gmail.com')

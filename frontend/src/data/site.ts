@@ -32,7 +32,7 @@ export const offices: Office[] = [
     city: 'Karachi',
     label: 'Head office',
     flag: 'pk',
-    address: ['1/1-A, Night Square', 'Federal B Area', 'Karachi, Pakistan'],
+    address: ['187/B, Block 2, P.E.C.H.S', 'Near McDonald', 'Karachi, Pakistan'],
     phones: ['+92 21 36375691', '+92 345 3177311'],
     email: 'info@apxlog.com',
     whatsapp: '923453177311',
@@ -45,14 +45,6 @@ export const offices: Office[] = [
     address: ['Shop 103 & 106, First Floor', 'Cliff Shopping Mall, Clifton', 'Karachi, Pakistan'],
     phones: ['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'],
     email: 'apx.cliff@gmail.com',
-  },
-  {
-    country: 'Pakistan',
-    city: 'Lahore',
-    label: 'Lahore branch',
-    flag: 'pk',
-    address: ["LG 16, Zamin Centre, Faletti's Express", 'Davis Road, Shimla Pahari', 'Lahore, Pakistan'],
-    phones: ['+92 322 2049615', '+92 42 36374800'],
   },
   {
     country: 'Pakistan',
