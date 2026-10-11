@@ -5,11 +5,83 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, Loader2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
-import { mapsLink, offices, services } from '../data/site'
+import { mapsLink, offices, services, type Office } from '../data/site'
 import { sendContact, type ContactPayload } from '../lib/api'
 
 const inputCls =
   'w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-ink-900 outline-none transition-all placeholder:text-slate-400 focus:border-accent-500 focus:bg-white focus:ring-4 focus:ring-accent-500/10'
+
+const headOffices = offices.filter((o) => o.label === 'Head office')
+const branchOffices = offices.filter((o) => o.label !== 'Head office')
+
+function OfficeCard({ office: o }: { office: Office }) {
+  return (
+    <div className="rounded-3xl border border-slate-100 p-8 transition-shadow hover:shadow-xl hover:shadow-brand-600/5">
+      <div className="flex items-center gap-3">
+        <Flag code={o.flag} className="h-8" />
+        <div>
+          <h3 className="text-lg font-bold text-ink-900">{o.country}</h3>
+          <p className="text-sm text-slate-500">{o.city}</p>
+        </div>
+      </div>
+      <a
+        href={mapsLink(o)}
+        target="_blank"
+        rel="noreferrer"
+        className="group mt-6 flex items-start gap-3 text-sm font-semibold text-slate-600 hover:text-accent-500"
+      >
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
+          <MapPin className="h-4 w-4" />
+        </span>
+        <span>
+          {o.address.map((line) => (
+            <span key={line} className="block">{line}</span>
+          ))}
+          <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-accent-500">
+            Get directions <ArrowUpRight className="h-3 w-3" />
+          </span>
+        </span>
+      </a>
+      <ul className="mt-3 space-y-3 text-sm">
+        {o.phones.map((p) => (
+          <li key={p}>
+            <a href={`tel:${p.replace(/\s/g, '')}`} className="flex items-center gap-3 font-semibold text-slate-600 hover:text-accent-500">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
+                <Phone className="h-4 w-4" />
+              </span>
+              {p}
+            </a>
+          </li>
+        ))}
+        {o.whatsapp && (
+          <li>
+            <a
+              href={`https://wa.me/${o.whatsapp}`}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-3 font-semibold text-slate-600 hover:text-[#25d366]"
+            >
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#25d366]/10 text-[#25d366]">
+                <MessageCircle className="h-4 w-4" />
+              </span>
+              WhatsApp us
+            </a>
+          </li>
+        )}
+        {o.email && (
+          <li>
+            <a href={`mailto:${o.email}`} className="flex items-center gap-3 font-semibold text-slate-600 hover:text-accent-500">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent-500/10 text-accent-500">
+                <Mail className="h-4 w-4" />
+              </span>
+              {o.email}
+            </a>
+          </li>
+        )}
+      </ul>
+    </div>
+  )
+}
 
 export default function Contact() {
   const [params] = useSearchParams()
@@ -50,73 +122,23 @@ export default function Contact() {
       <section className="py-24 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">
-            {offices.map((o, i) => (
-              <Reveal key={o.address[0]} delay={i * 0.1}>
-                <div className="rounded-3xl border border-slate-100 p-8 transition-shadow hover:shadow-xl hover:shadow-brand-600/5">
-                  <div className="flex items-center gap-3">
-                    <Flag code={o.flag} className="h-8" />
-                    <div>
-                      <h3 className="text-lg font-bold text-ink-900">{o.country}</h3>
-                      <p className="text-sm text-slate-500">{o.label}</p>
-                    </div>
-                  </div>
-                  <a
-                    href={mapsLink(o)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group mt-6 flex items-start gap-3 text-sm font-semibold text-slate-600 hover:text-accent-500"
-                  >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
-                      <MapPin className="h-4 w-4" />
-                    </span>
-                    <span>
-                      {o.address.map((line) => (
-                        <span key={line} className="block">{line}</span>
-                      ))}
-                      <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-accent-500">
-                        Get directions <ArrowUpRight className="h-3 w-3" />
-                      </span>
-                    </span>
-                  </a>
-                  <ul className="mt-3 space-y-3 text-sm">
-                    {o.phones.map((p) => (
-                      <li key={p}>
-                        <a href={`tel:${p.replace(/\s/g, '')}`} className="flex items-center gap-3 font-semibold text-slate-600 hover:text-accent-500">
-                          <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-50 text-brand-600">
-                            <Phone className="h-4 w-4" />
-                          </span>
-                          {p}
-                        </a>
-                      </li>
-                    ))}
-                    {o.whatsapp && (
-                      <li>
-                        <a
-                          href={`https://wa.me/${o.whatsapp}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center gap-3 font-semibold text-slate-600 hover:text-[#25d366]"
-                        >
-                          <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#25d366]/10 text-[#25d366]">
-                            <MessageCircle className="h-4 w-4" />
-                          </span>
-                          WhatsApp us
-                        </a>
-                      </li>
-                    )}
-                    {o.email && (
-                      <li>
-                        <a href={`mailto:${o.email}`} className="flex items-center gap-3 font-semibold text-slate-600 hover:text-accent-500">
-                          <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent-500/10 text-accent-500">
-                            <Mail className="h-4 w-4" />
-                          </span>
-                          {o.email}
-                        </a>
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              </Reveal>
+            {[
+              { title: 'Head office', list: headOffices },
+              { title: 'Branch offices', list: branchOffices },
+            ].map((group, g) => (
+              <div key={group.title} className="space-y-6">
+                <Reveal delay={g * 0.1}>
+                  <h2 className="flex items-center gap-3 text-xs font-bold tracking-widest text-accent-500 uppercase">
+                    {group.title}
+                    <span className="h-px flex-1 bg-slate-200" />
+                  </h2>
+                </Reveal>
+                {group.list.map((o, i) => (
+                  <Reveal key={o.address[0]} delay={i * 0.1}>
+                    <OfficeCard office={o} />
+                  </Reveal>
+                ))}
+              </div>
             ))}
           </div>
 

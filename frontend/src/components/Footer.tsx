@@ -92,11 +92,17 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-3">
             <h4 className="text-sm font-bold uppercase tracking-widest text-white">Get in touch</h4>
             <ul className="mt-5 space-y-4 text-sm">
-              {offices.map((o) => (
+              {offices.map((o, i) => (
                 <li key={o.address[0]}>
+                  {/* Group heading before the head office and before the first branch */}
+                  {(i === 0 || (o.label !== offices[i - 1].label && o.label !== 'Head office')) && (
+                    <p className="mb-2 text-[11px] font-bold tracking-widest text-accent-400 uppercase">
+                      {o.label === 'Head office' ? 'Head office' : 'Branch offices'}
+                    </p>
+                  )}
                   <p className="font-semibold text-slate-200">
                     <Flag code={o.flag} className="mr-1.5 h-3.5 align-[-2px]" />
-                    {o.country} · {o.label}
+                    {o.country} · {o.city}
                   </p>
                   <a href={mapsLink(o)} target="_blank" rel="noreferrer" className="mt-1.5 flex items-start gap-2 hover:text-accent-400">
                     <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" /> {o.address.join(', ')}

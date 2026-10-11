@@ -48,7 +48,7 @@ export default function WhatsAppButton() {
                 >
                   <Flag code={o.flag} className="h-6" />
                   <span className="flex-1">
-                    <span className="block text-sm font-bold text-ink-900">{o.country} · {o.label}</span>
+                    <span className="block text-sm font-bold text-ink-900">{o.country} · {o.city}</span>
                     <span className="block text-xs text-slate-500">{o.phones.find((p) => p.replace(/\D/g, '') === o.whatsapp) ?? `+${o.whatsapp}`}</span>
                   </span>
                   <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-[#25d366]" />
