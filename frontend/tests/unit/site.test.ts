@@ -33,7 +33,7 @@ describe('company and office data', () => {
     expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
     expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'])
     expect(faisalabad.address.join(' ')).toContain('A-63, Peoples Colony (Choti-D)')
-    expect(faisalabad.phones).toEqual(['+92 41 8555422', '+92 41 8555423', '+92 323 2442410'])
+    expect(faisalabad.phones).toEqual(['+92 41 8555422', '+92 41 8555423'])
     expect(faisalabad.email).toBe('faisalabadapx@gmail.com')
     expect(uk.address.join(' ')).toContain('UB7 0EB')
     expect(uk.phones).toEqual(['+44 7884 090724'])

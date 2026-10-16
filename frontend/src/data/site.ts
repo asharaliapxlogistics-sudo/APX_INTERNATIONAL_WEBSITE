@@ -61,7 +61,7 @@ export const offices: Office[] = [
     label: 'Branch office',
     flag: 'pk',
     address: ['A-63, Peoples Colony (Choti-D)', 'Faisalabad, Pakistan'],
-    phones: ['+92 41 8555422', '+92 41 8555423', '+92 323 2442410'],
+    phones: ['+92 41 8555422', '+92 41 8555423'],
     email: 'faisalabadapx@gmail.com',
   },
   {
