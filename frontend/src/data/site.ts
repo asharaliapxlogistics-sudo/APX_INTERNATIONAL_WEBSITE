@@ -52,7 +52,7 @@ export const offices: Office[] = [
     label: 'Branch office',
     flag: 'pk',
     address: ['Shop 103 & 106, First Floor', 'Cliff Shopping Mall, Clifton', 'Karachi, Pakistan'],
-    phones: ['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'],
+    phones: ['+92 301 8260440', '+92 21 35164827'],
     email: 'apx.cliff@gmail.com',
   },
   {

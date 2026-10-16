@@ -31,7 +31,7 @@ describe('company and office data', () => {
     expect(nightSquare.email).toBe('csdapxfb@gmail.com')
     expect(nightSquare.whatsapp).toBe('923453177311')
     expect(clifton.address.join(' ')).toContain('Cliff Shopping Mall')
-    expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827', '+92 21 36375691'])
+    expect(clifton.phones).toEqual(['+92 301 8260440', '+92 21 35164827'])
     expect(faisalabad.address.join(' ')).toContain('A-63, Peoples Colony (Choti-D)')
     expect(faisalabad.phones).toEqual(['+92 41 8555422', '+92 41 8555423'])
     expect(faisalabad.email).toBe('faisalabadapx@gmail.com')
