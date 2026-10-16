@@ -26,10 +26,10 @@ describe('Routes', () => {
     expect(await screen.findByRole('heading', { level: 1, name: heading })).toBeInTheDocument()
   })
 
-  it('TC-U32: never mentions India or Dubai anywhere on the home page', async () => {
+  it('TC-U32: never mentions India anywhere on the home page', async () => {
     renderAt(<App />, '/')
     await screen.findByRole('heading', { level: 1 })
-    expect(document.body.textContent).not.toMatch(/India|Dubai|UAE/)
+    expect(document.body.textContent).not.toMatch(/India/)
   })
 
   it('TC-U33: shows the intro splash on the first visit of a session', () => {

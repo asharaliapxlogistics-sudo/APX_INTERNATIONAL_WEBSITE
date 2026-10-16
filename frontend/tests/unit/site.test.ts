@@ -6,7 +6,7 @@ describe('company and office data', () => {
     expect(company.name).toBe('APX International')
   })
 
-  it('TC-U11: lists the Pakistan offices and the UK office (no Dubai)', () => {
+  it('TC-U11: lists the Pakistan offices, then the UK, USA and Dubai offices', () => {
     expect(offices.map((o) => o.label)).toEqual([
       'Head office',
       'Branch office',
@@ -14,12 +14,13 @@ describe('company and office data', () => {
       'Branch office',
       'Branch office',
       'Branch office',
+      'Branch office',
     ])
-    expect(JSON.stringify(offices)).not.toMatch(/Dubai|UAE|United Arab/)
+    expect(offices.map((o) => o.city)).toEqual(['Karachi', 'Karachi', 'Karachi', 'Faisalabad', 'London', 'Kingwood', 'Dubai'])
   })
 
   it('TC-U12: has the confirmed addresses and phone numbers', () => {
-    const [pk, nightSquare, clifton, faisalabad, uk, usa] = offices
+    const [pk, nightSquare, clifton, faisalabad, uk, usa, dubai] = offices
     expect(usa.address.join(' ')).toContain('6109 Moody Pines Ct')
     expect(usa.phones).toEqual(['+1 346 213 4425'])
     expect(pk.address.join(' ')).toContain('187/B, Block 2, P.E.C.H.S')
@@ -36,6 +37,9 @@ describe('company and office data', () => {
     expect(faisalabad.email).toBe('faisalabadapx@gmail.com')
     expect(uk.address.join(' ')).toContain('UB7 0EB')
     expect(uk.phones).toEqual(['+44 7884 090724'])
+    expect(dubai.address.join(' ')).toContain('Al Zarouni 2 Building')
+    expect(dubai.phones).toEqual(['+971 52 897 3242'])
+    expect(dubai.email).toBe('accounts@apxexpress.ae')
   })
 
   it('TC-U13: every WhatsApp number matches one of that office’s phone numbers', () => {

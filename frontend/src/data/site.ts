@@ -81,6 +81,15 @@ export const offices: Office[] = [
     address: ['6109 Moody Pines Ct', 'Kingwood, TX 77345', 'United States'],
     phones: ['+1 346 213 4425'],
   },
+  {
+    country: 'United Arab Emirates',
+    city: 'Dubai',
+    label: 'Branch office',
+    flag: 'ae',
+    address: ['Office # 3, Ground Floor, Al Zarouni 2 Building', 'Beirut Street, Al Qusais Industrial 5', 'Dubai, UAE'],
+    phones: ['+971 52 897 3242'],
+    email: 'accounts@apxexpress.ae',
+  },
 ]
 
 export const mapsLink = (o: Office) =>

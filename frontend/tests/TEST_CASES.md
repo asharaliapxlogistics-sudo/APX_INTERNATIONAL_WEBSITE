@@ -42,7 +42,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | ID | Test case | Expected result |
 |---|---|---|
 | TC-U10 | Company name | "APX International" |
-| TC-U11 | Offices | Karachi head office (P.E.C.H.S), then branch offices at Night Square, Clifton, Faisalabad, UK and USA — no Dubai, no Lahore |
+| TC-U11 | Offices | Karachi head office (P.E.C.H.S), then branch offices at Night Square, Clifton, Faisalabad, UK, USA and Dubai — no Lahore |
 | TC-U12 | Addresses and phones | All office addresses and phone numbers are correct |
 | TC-U13 | WhatsApp numbers | Each matches a listed phone number |
 | TC-U14 | Directions link | Valid Google Maps link with the office address |
@@ -79,7 +79,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | ID | Test case | Expected result |
 |---|---|---|
 | TC-U31 | Open every page (Home, About, Services, Tracking, Contact, Packaging, Prohibited, Terms, Privacy, Login) and an unknown URL | Each shows its own heading; unknown URL shows 404 |
-| TC-U32 | Home page text | No India, Dubai or UAE |
+| TC-U32 | Home page text | No India |
 | TC-U33 | First visit in a session | Intro splash is shown |
 
 ---
