@@ -43,7 +43,7 @@ export const offices: Office[] = [
     flag: 'pk',
     address: ['1/1-A, Night Square', 'Federal B Area', 'Karachi, Pakistan'],
     phones: ['+92 21 36375691', '+92 345 3177311'],
-    email: 'info@apxlog.com',
+    email: 'csdapxfb@gmail.com',
     whatsapp: '923453177311',
   },
   {
@@ -71,6 +71,7 @@ export const offices: Office[] = [
     flag: 'gb',
     address: ['450 Bath Road, Longford', 'Heathrow, England', 'UB7 0EB'],
     phones: ['+44 7884 090724'],
+    email: 'admin@apxxpress.com',
     whatsapp: '447884090724',
   },
   {
@@ -80,6 +81,7 @@ export const offices: Office[] = [
     flag: 'us',
     address: ['6109 Moody Pines Ct', 'Kingwood, TX 77345', 'United States'],
     phones: ['+1 346 213 4425'],
+    email: 'admin@apxxpress.com',
   },
   {
     country: 'United Arab Emirates',
