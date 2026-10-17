@@ -68,6 +68,7 @@ const CARRIER_SITES: Partial<Record<string, { name: string; url: (n: string) => 
   dhl: { name: 'DHL', url: (n) => `https://www.dhl.com/gb-en/home/tracking.html?submit=1&tracking-id=${n}` },
   fedex: { name: 'FedEx', url: (n) => `https://www.fedex.com/fedextrack/?trknbr=${n}` },
   skynet: { name: 'Skynet', url: (n) => `https://www.snwwe.com/pk-en/track-shipment?AWB=${n}` },
+  ups: { name: 'UPS', url: (n) => `https://www.ups.com/track?loc=en_GB&tracknum=${n}` },
   usps: { name: 'USPS', url: (n) => `https://tools.usps.com/tracking/${n}` },
 }
 
