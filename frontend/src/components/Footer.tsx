@@ -34,7 +34,7 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         {/* ───── Links ───── */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-12 pt-20 pb-16 lg:grid-cols-12">
-          <div className="col-span-2 lg:col-span-4">
+          <div className="col-span-2 lg:col-span-5">
             <Logo light />
             <p className="mt-5 max-w-sm text-sm leading-relaxed">
               The leading provider of secure, reliable and trusted courier & logistics services worldwide — proudly
@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="text-sm font-bold uppercase tracking-widest text-white">Company</h4>
             <ul className="mt-5 space-y-3 text-sm">
               {[
@@ -69,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <h4 className="text-sm font-bold uppercase tracking-widest text-white">Services</h4>
             <ul className="mt-5 space-y-3 text-sm">
               {services.map((s) => (
@@ -88,18 +88,22 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+        </div>
 
-          <div className="col-span-2 lg:col-span-3">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white">Get in touch</h4>
-            <ul className="mt-5 space-y-4 text-sm">
-              {offices.map((o, i) => (
-                <li key={o.address[0]}>
-                  {/* Group heading before the head office and before the first branch */}
-                  {(i === 0 || (o.label !== offices[i - 1].label && o.label !== 'Head office')) && (
-                    <p className="mb-2 text-[11px] font-bold tracking-widest text-accent-400 uppercase">
-                      {o.label === 'Head office' ? 'Head office' : 'Branch offices'}
-                    </p>
-                  )}
+        {/* ───── Offices: stacked on mobile, a grid of cards on wider screens ───── */}
+        <div className="border-t border-white/10 pt-12 pb-16">
+          <h4 className="text-sm font-bold uppercase tracking-widest text-white">Get in touch</h4>
+          <ul className="mt-6 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+            {offices.map((o) => {
+              const head = o.label === 'Head office'
+              return (
+                <li
+                  key={o.address[0]}
+                  className={`rounded-2xl border p-5 ${head ? 'border-accent-500/40 bg-accent-500/5' : 'border-white/10 bg-white/[0.02]'}`}
+                >
+                  <p className={`mb-2 text-[11px] font-bold tracking-widest uppercase ${head ? 'text-accent-400' : 'text-slate-500'}`}>
+                    {o.label}
+                  </p>
                   <p className="font-semibold text-slate-200">
                     <Flag code={o.flag} className="mr-1.5 h-3.5 align-[-2px]" />
                     {o.country} · {o.city}
@@ -118,9 +122,9 @@ export default function Footer() {
                     </a>
                   )}
                 </li>
-              ))}
-            </ul>
-          </div>
+              )
+            })}
+          </ul>
         </div>
 
         <div className="border-t border-white/10" />
