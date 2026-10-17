@@ -65,6 +65,8 @@ type ErpShipment = {
 const CARRIER_SITES: Partial<Record<string, { name: string; url: (n: string) => string }>> = {
   dpd: { name: 'DPD UK', url: (n) => `https://track.dpd.co.uk/search?reference=${n}` },
   'dpd germany': { name: 'DPD Germany', url: (n) => `https://tracking.dpd.de/status/en_US/parcel/${n}` },
+  skynet: { name: 'Skynet', url: (n) => `https://www.snwwe.com/pk-en/track-shipment?AWB=${n}` },
+  usps: { name: 'USPS', url: (n) => `https://tools.usps.com/tracking/${n}` },
 }
 
 export function carrierLink(carrier = '', number = '', service = '') {
