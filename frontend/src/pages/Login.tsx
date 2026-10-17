@@ -8,18 +8,18 @@ const ERP_URL = (import.meta.env.VITE_ERP_URL || 'https://erp.apxintl.net').repl
 
 const portals = [
   {
-    href: `${ERP_URL}/portal/login`,
-    icon: Building2,
-    iconCls: 'bg-accent-500/10 text-accent-500',
-    title: 'Customer Portal',
-    text: 'Track shipments, send addresses and see invoices',
-  },
-  {
     href: `${ERP_URL}/login`,
     icon: ShieldCheck,
     iconCls: 'bg-brand-50 text-brand-600',
     title: 'APX Staff / Admin',
     text: 'Bookings, airway bills, billing and reports',
+  },
+  {
+    href: `${ERP_URL}/portal/login`,
+    icon: Building2,
+    iconCls: 'bg-accent-500/10 text-accent-500',
+    title: 'Customer Portal',
+    text: 'Track shipments, send addresses and see invoices',
   },
 ]
 
