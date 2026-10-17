@@ -116,11 +116,29 @@ test.describe('Navigation', () => {
 
 test.describe('Tracking', () => {
   test('TC-E04: tracking from the home page shows the result, route map and history', async ({ page }) => {
+    // Answer for the ERP's public tracking API, so the test does not depend on live data.
+    await page.route('**/api/track/**', (route) =>
+      route.fulfill({
+        json: {
+          number: '10257080',
+          date: '2026-10-15',
+          city: 'London',
+          country: 'United Kingdom',
+          service: 'Express',
+          status: 'In transit',
+          group: 'transit',
+          events: [
+            { status: 'Booked', at: '2026-10-15T10:30', location: 'Karachi', remarks: 'Airway bill created' },
+            { status: 'In transit', at: '2026-10-16T21:05', location: 'Dubai', remarks: '' },
+          ],
+        },
+      }),
+    )
     await page.goto('/')
-    await page.getByPlaceholder('Enter your tracking number').first().fill('APX20490')
+    await page.getByPlaceholder('Enter your tracking number').first().fill('10257080')
     await page.getByRole('button', { name: 'Track' }).first().click()
-    await expect(page).toHaveURL(/\/tracking\?no=APX20490$/)
-    await expect(page.getByText('APX20490').first()).toBeVisible()
+    await expect(page).toHaveURL(/\/tracking\?no=10257080$/)
+    await expect(page.getByText('10257080').first()).toBeVisible()
     await expect(page.getByText('50% of the way')).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Shipment history' })).toBeVisible()
   })

@@ -1,27 +1,35 @@
-import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, BarChart3, FileText, Info, Lock, Mail, PackageSearch, User, Building2 } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ArrowLeft, ArrowRight, BarChart3, Building2, FileText, Info, PackageSearch, ShieldCheck } from 'lucide-react'
 import Logo from '../components/Logo'
 
+// The APX ERP, where customers and staff actually sign in.
+const ERP_URL = (import.meta.env.VITE_ERP_URL || 'https://erp.apxintl.net').replace(/\/$/, '')
+
+const portals = [
+  {
+    href: `${ERP_URL}/portal/login`,
+    icon: Building2,
+    iconCls: 'bg-accent-500/10 text-accent-500',
+    title: 'Customer Portal',
+    text: 'Track shipments, send addresses and see invoices',
+  },
+  {
+    href: `${ERP_URL}/login`,
+    icon: ShieldCheck,
+    iconCls: 'bg-brand-50 text-brand-600',
+    title: 'APX Staff / Admin',
+    text: 'Bookings, airway bills, billing and reports',
+  },
+]
+
 const perks = [
-  { icon: PackageSearch, text: 'Book & track all your shipments' },
-  { icon: FileText, text: 'Download invoices and airway bills' },
+  { icon: PackageSearch, text: 'Track all your shipments' },
+  { icon: FileText, text: 'See and print your invoices' },
   { icon: BarChart3, text: 'Reports on your shipping activity' },
 ]
 
-const inputWrap =
-  'flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 transition-all focus-within:border-accent-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-accent-500/10'
-
 export default function Login() {
-  const [mode, setMode] = useState<'login' | 'signup'>('login')
-  const [notice, setNotice] = useState(false)
-
-  function submit(e: FormEvent) {
-    e.preventDefault()
-    setNotice(true)
-  }
-
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       {/* Left visual panel */}
@@ -65,7 +73,7 @@ export default function Login() {
         <p className="relative text-sm text-slate-400">© {new Date().getFullYear()} APX International</p>
       </div>
 
-      {/* Form panel */}
+      {/* Portal links: both sign-ins live in the APX ERP */}
       <div className="flex flex-col px-6 py-10 sm:px-12">
         <div className="flex items-center justify-between">
           <Link to="/" className="lg:hidden">
@@ -77,101 +85,38 @@ export default function Login() {
         </div>
 
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-12">
-          <h2 className="text-3xl font-extrabold tracking-tight text-ink-900">Customer Portal</h2>
-          <p className="mt-2 text-slate-500">
-            {mode === 'login' ? 'Welcome back! Sign in to manage your shipments.' : 'Create an account to start shipping with APX.'}
-          </p>
+          <h2 className="text-3xl font-extrabold tracking-tight text-ink-900">Sign in</h2>
+          <p className="mt-2 text-slate-500">Choose your portal. You will sign in with the username and password APX gave you.</p>
 
-          <div className="relative mt-8 grid grid-cols-2 rounded-xl bg-slate-100 p-1">
-            {(['login', 'signup'] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => {
-                  setMode(m)
-                  setNotice(false)
-                }}
-                className={`relative z-10 rounded-lg py-2.5 text-sm font-bold transition-colors ${mode === m ? 'text-ink-900' : 'text-slate-500'}`}
+          <div className="mt-8 space-y-4">
+            {portals.map((p, i) => (
+              <motion.a
+                key={p.href}
+                href={p.href}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.1 }}
+                className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-accent-500 hover:shadow-xl hover:shadow-accent-500/10"
               >
-                {mode === m && (
-                  <motion.span layoutId="auth-tab" className="absolute inset-0 -z-10 rounded-lg bg-white shadow" transition={{ type: 'spring', stiffness: 400, damping: 30 }} />
-                )}
-                {m === 'login' ? 'Login' : 'Sign up'}
-              </button>
+                <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${p.iconCls}`}>
+                  <p.icon className="h-6 w-6" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-bold text-ink-900">{p.title}</span>
+                  <span className="block text-sm text-slate-500">{p.text}</span>
+                </span>
+                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-accent-500" />
+              </motion.a>
             ))}
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.form
-              key={mode}
-              initial={{ opacity: 0, x: mode === 'login' ? -20 : 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onSubmit={submit}
-              className="mt-8 space-y-4"
-            >
-              {mode === 'signup' && (
-                <>
-                  <label className={inputWrap}>
-                    <User className="h-5 w-5 text-slate-400" />
-                    <input required placeholder="Full name" className="w-full bg-transparent py-3.5 outline-none" />
-                  </label>
-                  <label className={inputWrap}>
-                    <Building2 className="h-5 w-5 text-slate-400" />
-                    <input placeholder="Company (optional)" className="w-full bg-transparent py-3.5 outline-none" />
-                  </label>
-                </>
-              )}
-              <label className={inputWrap}>
-                <Mail className="h-5 w-5 text-slate-400" />
-                <input required type="email" placeholder="Email address" className="w-full bg-transparent py-3.5 outline-none" />
-              </label>
-              <label className={inputWrap}>
-                <Lock className="h-5 w-5 text-slate-400" />
-                <input required type="password" placeholder="Password" className="w-full bg-transparent py-3.5 outline-none" />
-              </label>
-
-              {mode === 'login' && (
-                <div className="flex items-center justify-between text-sm">
-                  <label className="flex items-center gap-2 text-slate-500">
-                    <input type="checkbox" className="h-4 w-4 accent-accent-500" /> Remember me
-                  </label>
-                  <button type="button" onClick={() => setNotice(true)} className="font-semibold text-brand-600 hover:underline">
-                    Forgot password?
-                  </button>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-accent-500 py-4 font-bold text-white shadow-lg shadow-accent-500/30 transition-all hover:bg-accent-600 active:scale-[0.99]"
-              >
-                {mode === 'login' ? 'Sign in' : 'Create account'}
-              </button>
-
-              {mode === 'signup' && (
-                <p className="text-center text-xs text-slate-400">
-                  By creating an account you agree to our{' '}
-                  <Link to="/terms" className="font-semibold text-slate-500 hover:text-accent-500">Terms</Link> and{' '}
-                  <Link to="/privacy" className="font-semibold text-slate-500 hover:text-accent-500">Privacy Policy</Link>.
-                </p>
-              )}
-
-              <AnimatePresence>
-                {notice && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="flex items-start gap-3 rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-700"
-                  >
-                    <Info className="mt-0.5 h-4 w-4 shrink-0" />
-                    The customer portal is launching soon. Meanwhile, please contact us at info@apxlog.com for bookings.
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.form>
-          </AnimatePresence>
+          <p className="mt-8 flex items-start gap-3 rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-500">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+            <span>
+              Need a customer account? APX sets it up for you.{' '}
+              <Link to="/contact" className="font-semibold text-brand-600 hover:underline">Contact us</Link>.
+            </span>
+          </p>
         </div>
       </div>
     </div>

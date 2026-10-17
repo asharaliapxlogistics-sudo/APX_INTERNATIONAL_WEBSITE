@@ -92,7 +92,7 @@ export default function Home() {
               className="mt-8 max-w-xl"
             >
               <TrackBox />
-              <p className="mt-3 text-xs text-slate-400">Try any number, e.g. <span className="font-mono text-slate-300">APX20490</span></p>
+              <p className="mt-3 text-xs text-slate-400">Your tracking number is printed on your airway bill.</p>
             </motion.div>
 
             <motion.div

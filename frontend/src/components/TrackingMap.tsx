@@ -16,13 +16,16 @@ const CITIES: Record<string, { x: number; y: number; flag: string }> = {
   Riyadh: { x: 79, y: 26.85, flag: 'sa' },
 }
 
-// How far along the route the parcel is for each status (0 = origin, 1 = destination).
+// How far along the route the parcel is for each ERP status (0 = origin, 1 = destination).
 const ROUTE_POSITION: Record<string, number> = {
-  'Shipment booked': 0,
+  Booked: 0,
   'Picked up': 0,
-  'Departed origin facility': 0.12,
+  'At APX hub': 0,
+  'Departed origin': 0.12,
   'In transit': 0.5,
-  'Arrived at destination hub': 0.9,
+  'Arrived destination': 0.9,
+  'Customs hold': 0.9,
+  'Customs cleared': 0.92,
   'Out for delivery': 0.96,
   Delivered: 1,
 }

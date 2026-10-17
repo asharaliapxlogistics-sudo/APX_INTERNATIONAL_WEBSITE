@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { AlertCircle, CalendarClock, CheckCircle2, Circle, Info, Loader2, MapPin, Package } from 'lucide-react'
+import { AlertCircle, CalendarClock, CheckCircle2, Circle, Loader2, MapPin, Package } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import TrackBox from '../components/TrackBox'
 import TrackingMap from '../components/TrackingMap'
@@ -49,14 +49,6 @@ export default function Tracking() {
 
       <section className="min-h-[50vh] bg-slate-50 py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <div className="mb-8 flex items-start gap-3 rounded-2xl border border-brand-100 bg-brand-50 px-5 py-4 text-sm text-brand-700">
-            <Info className="mt-0.5 h-4 w-4 shrink-0" />
-            <p>
-              <strong>Preview mode:</strong> live tracking is being connected to the APX system. Results shown here are
-              sample data for demonstration.
-            </p>
-          </div>
-
           <AnimatePresence mode="wait">
             {loading && (
               <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center py-20 text-slate-500">
@@ -81,7 +73,7 @@ export default function Tracking() {
                   <Package className="h-9 w-9" />
                 </span>
                 <p className="mt-6 text-lg font-bold text-ink-900">Enter a tracking number above</p>
-                <p className="mt-1 text-sm text-slate-500">Try a sample like <span className="font-mono">APX20490</span></p>
+                <p className="mt-1 text-sm text-slate-500">Your tracking number is printed on your airway bill.</p>
               </motion.div>
             )}
 
@@ -98,7 +90,7 @@ export default function Tracking() {
                   <div className="grid gap-6 p-8 sm:grid-cols-3">
                     <Info2 icon={MapPin} label="From" value={result.origin} />
                     <Info2 icon={MapPin} label="To" value={result.destination} />
-                    <Info2 icon={CalendarClock} label="Estimated delivery" value={result.estimated_delivery} />
+                    <Info2 icon={CalendarClock} label="Booked on" value={result.booked_on} />
                   </div>
                   <div className="px-8 pb-8">
                     <div className="flex justify-between text-xs font-semibold text-slate-500">
@@ -140,6 +132,7 @@ export default function Tracking() {
                         <div className="-mt-0.5">
                           <p className={`font-bold ${ev.done ? 'text-ink-900' : 'text-slate-400'}`}>{ev.status}</p>
                           <p className="text-sm text-slate-500">{ev.location}</p>
+                          {ev.note && <p className="mt-0.5 text-sm text-slate-600">{ev.note}</p>}
                           {ev.timestamp && <p className="mt-0.5 text-xs text-slate-400">{ev.timestamp}</p>}
                         </div>
                       </motion.li>

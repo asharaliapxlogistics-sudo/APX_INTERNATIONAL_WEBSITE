@@ -1,9 +1,6 @@
 /*
- * Demo tracking data.
- *
- * The real APX tracking system (ERP) isn't connected yet, so this generates a consistent sample
- * shipment from the tracking number. Replace `trackShipment` in ./api.ts with a call to the ERP
- * API when it's ready.
+ * Sample shipment for tests and previews: a consistent journey generated from the tracking number.
+ * Live tracking comes from the APX ERP (see trackShipment in ./api.ts).
  */
 import type { TrackingEvent, TrackingResult } from './api'
 
@@ -18,15 +15,7 @@ const ROUTES: [string, string][] = [
 
 const SERVICES = ['International Express', 'Freight & Cargo']
 
-const STEPS = [
-  'Shipment booked',
-  'Picked up',
-  'Departed origin facility',
-  'In transit',
-  'Arrived at destination hub',
-  'Out for delivery',
-  'Delivered',
-]
+const STEPS = ['Booked', 'Picked up', 'Departed origin', 'In transit', 'Arrived destination', 'Out for delivery', 'Delivered']
 
 // FNV-1a — small deterministic hash so the same number always shows the same journey.
 function hash(text: string) {
@@ -61,15 +50,13 @@ export function mockShipment(trackingNumber: string): TrackingResult {
     }
   })
 
-  const delivered = reached === STEPS.length
-  const eta = new Date(start + 10 * hour * (STEPS.length - 1))
   return {
     tracking_number: no,
     service,
     origin,
     destination,
     current_status: STEPS[reached - 1],
-    estimated_delivery: (delivered ? 'Delivered ' : '') + fmtDate(eta),
+    booked_on: fmtDate(new Date(start)),
     progress: Math.round((reached / STEPS.length) * 100),
     events: events.reverse(), // newest first
   }
