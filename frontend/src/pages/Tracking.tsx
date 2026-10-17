@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { AlertCircle, CalendarClock, CheckCircle2, Circle, Loader2, MapPin, Package } from 'lucide-react'
+import { AlertCircle, CalendarClock, CheckCircle2, Circle, ExternalLink, Loader2, MapPin, Package } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import TrackBox from '../components/TrackBox'
 import TrackingMap from '../components/TrackingMap'
@@ -81,9 +81,22 @@ export default function Tracking() {
               <motion.div key={result.tracking_number} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
                 <div className="overflow-hidden rounded-3xl bg-white shadow-xl ring-1 shadow-ink-900/5 ring-slate-100">
                   <div className="flex flex-wrap items-center justify-between gap-4 bg-ink-900 px-8 py-6 text-white">
-                    <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-400">Tracking number</p>
-                      <p className="mt-1 font-mono text-2xl font-bold">{result.tracking_number}</p>
+                    <div className="flex flex-wrap gap-x-10 gap-y-4">
+                      <div>
+                        <p className="text-xs uppercase tracking-widest text-slate-400">Tracking number</p>
+                        <p className="mt-1 font-mono text-2xl font-bold">{result.tracking_number}</p>
+                      </div>
+                      {result.carrier_tracking && (
+                        <div>
+                          <p className="text-xs uppercase tracking-widest text-slate-400">{result.carrier} tracking number</p>
+                          <p className="mt-1 font-mono text-2xl font-bold">{result.carrier_tracking}</p>
+                          {result.carrier_url && (
+                            <a href={result.carrier_url} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent-400 hover:text-white">
+                              Track on {result.carrier} <ExternalLink className="h-3.5 w-3.5" />
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                     <span className="rounded-full bg-accent-500 px-4 py-2 text-sm font-bold">{result.current_status}</span>
                   </div>
