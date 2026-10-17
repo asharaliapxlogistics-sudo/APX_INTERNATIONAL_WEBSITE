@@ -18,7 +18,6 @@ export type TrackingResult = {
   // Delivery partner (e.g. DPD) and its own tracking number, once APX staff enter it in the ERP.
   carrier?: string
   carrier_tracking?: string
-  carrier_url?: string
 }
 
 export type ContactPayload = {
@@ -60,21 +59,6 @@ type ErpShipment = {
   events: { status: string; at: string; location: string; remarks: string }[] // oldest first, office time
 }
 
-// The delivery partner's own tracking page, where we know it.
-const CARRIER_LINKS: Partial<Record<string, (n: string) => string>> = {
-  dpd: (n) => `https://www.dpd.co.uk/apps/tracking/?reference=${n}`,
-  dhl: (n) => `https://www.dhl.com/global-en/home/tracking/tracking-express.html?submit=1&tracking-id=${n}`,
-  fedex: (n) => `https://www.fedex.com/fedextrack/?trknbr=${n}`,
-  ups: (n) => `https://www.ups.com/track?tracknum=${n}`,
-  'royal mail': (n) => `https://www.royalmail.com/track-your-item#/tracking-results/${n}`,
-  aramex: (n) => `https://www.aramex.com/track/results?ShipmentNumber=${n}`,
-}
-
-export function carrierLink(carrier = '', number = '') {
-  const link = CARRIER_LINKS[carrier.trim().toLowerCase()]
-  return link && number.trim() ? link(encodeURIComponent(number.trim())) : ''
-}
-
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 // "2026-10-17" or "2026-10-17T14:05" (Karachi office time) → "17 Oct 2026" / "17 Oct 2026, 02:05 pm", without time-zone shifts.
@@ -98,7 +82,6 @@ export function fromErp(s: ErpShipment): TrackingResult {
     progress: STATUS_PROGRESS[s.status] ?? 50,
     carrier: s.carrierTracking ? s.carrier || 'Carrier' : undefined,
     carrier_tracking: s.carrierTracking || undefined,
-    carrier_url: carrierLink(s.carrier, s.carrierTracking) || undefined,
     events: s.events
       .map((e) => ({ status: e.status, location: e.location, timestamp: formatOfficeTime(e.at), done: true, note: e.remarks || undefined }))
       .reverse(), // newest first

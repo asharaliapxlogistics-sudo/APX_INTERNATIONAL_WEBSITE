@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { AlertCircle, CalendarClock, CheckCircle2, Circle, ExternalLink, Loader2, MapPin, Package } from 'lucide-react'
+import { AlertCircle, CalendarClock, CheckCircle2, Circle, Loader2, MapPin, Package } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import TrackBox from '../components/TrackBox'
 import TrackingMap from '../components/TrackingMap'
@@ -90,11 +90,6 @@ export default function Tracking() {
                         <div>
                           <p className="text-xs uppercase tracking-widest text-slate-400">{result.carrier} tracking number</p>
                           <p className="mt-1 font-mono text-2xl font-bold">{result.carrier_tracking}</p>
-                          {result.carrier_url && (
-                            <a href={result.carrier_url} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent-400 hover:text-white">
-                              Track on {result.carrier} <ExternalLink className="h-3.5 w-3.5" />
-                            </a>
-                          )}
                         </div>
                       )}
                     </div>
