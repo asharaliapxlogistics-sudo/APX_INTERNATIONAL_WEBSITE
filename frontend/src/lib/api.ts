@@ -61,7 +61,7 @@ type ErpShipment = {
 }
 
 // The delivery partner's own tracking page, where we know it.
-const CARRIER_LINKS: Record<string, (n: string) => string> = {
+const CARRIER_LINKS: Partial<Record<string, (n: string) => string>> = {
   dpd: (n) => `https://www.dpd.co.uk/apps/tracking/?reference=${n}`,
   dhl: (n) => `https://www.dhl.com/global-en/home/tracking/tracking-express.html?submit=1&tracking-id=${n}`,
   fedex: (n) => `https://www.fedex.com/fedextrack/?trknbr=${n}`,
