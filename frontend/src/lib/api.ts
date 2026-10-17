@@ -18,7 +18,7 @@ export type TrackingResult = {
   // Delivery partner (e.g. DPD) and its own tracking number, once APX staff enter it in the ERP.
   carrier?: string
   carrier_tracking?: string
-  carrier_url?: string
+  carrier_link?: { name: string; url: string } // the partner's own tracking page, e.g. DPD UK
 }
 
 export type ContactPayload = {
@@ -60,14 +60,18 @@ type ErpShipment = {
   events: { status: string; at: string; location: string; remarks: string }[] // oldest first, office time
 }
 
-// The delivery partner's own tracking page, where we know it. More carriers get added as APX confirms their links.
-const CARRIER_LINKS: Partial<Record<string, (n: string) => string>> = {
-  dpd: (n) => `https://track.dpd.co.uk/search?reference=${n}`,
+// The delivery partner's own tracking page, where we know it. DPD has one site per country, picked from the service
+// ("DPD DUTY PAID GERMANY" → DPD Germany, otherwise DPD UK). More carriers get added as APX confirms their links.
+const CARRIER_SITES: Partial<Record<string, { name: string; url: (n: string) => string }>> = {
+  dpd: { name: 'DPD UK', url: (n) => `https://track.dpd.co.uk/search?reference=${n}` },
+  'dpd germany': { name: 'DPD Germany', url: (n) => `https://tracking.dpd.de/status/en_US/parcel/${n}` },
 }
 
-export function carrierLink(carrier = '', number = '') {
-  const link = CARRIER_LINKS[carrier.trim().toLowerCase()]
-  return link && number.trim() ? link(encodeURIComponent(number.trim())) : ''
+export function carrierLink(carrier = '', number = '', service = '') {
+  let key = carrier.trim().toLowerCase()
+  if (key === 'dpd' && /\bgermany\b/i.test(service)) key = 'dpd germany'
+  const site = CARRIER_SITES[key]
+  return site && number.trim() ? { name: site.name, url: site.url(encodeURIComponent(number.trim())) } : undefined
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -93,7 +97,7 @@ export function fromErp(s: ErpShipment): TrackingResult {
     progress: STATUS_PROGRESS[s.status] ?? 50,
     carrier: s.carrierTracking ? s.carrier || 'Carrier' : undefined,
     carrier_tracking: s.carrierTracking || undefined,
-    carrier_url: carrierLink(s.carrier, s.carrierTracking) || undefined,
+    carrier_link: carrierLink(s.carrier, s.carrierTracking, s.service),
     events: s.events
       .map((e) => ({ status: e.status, location: e.location, timestamp: formatOfficeTime(e.at), done: true, note: e.remarks || undefined }))
       .reverse(), // newest first

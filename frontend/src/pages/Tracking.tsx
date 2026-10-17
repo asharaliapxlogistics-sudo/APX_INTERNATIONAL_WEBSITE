@@ -90,9 +90,9 @@ export default function Tracking() {
                         <div>
                           <p className="text-xs uppercase tracking-widest text-slate-400">{result.carrier} tracking number</p>
                           <p className="mt-1 font-mono text-2xl font-bold">{result.carrier_tracking}</p>
-                          {result.carrier_url && (
-                            <a href={result.carrier_url} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent-400 hover:text-white">
-                              Track on {result.carrier} UK <ExternalLink className="h-3.5 w-3.5" />
+                          {result.carrier_link && (
+                            <a href={result.carrier_link.url} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent-400 hover:text-white">
+                              Track on {result.carrier_link.name} <ExternalLink className="h-3.5 w-3.5" />
                             </a>
                           )}
                         </div>
