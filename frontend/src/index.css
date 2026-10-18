@@ -34,6 +34,15 @@
   }
 }
 
+/* Decorative blur glows overflow their sections; iOS Safari would otherwise
+   widen the page and zoom out. `clip` (unlike `hidden`) keeps sticky working. */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   @apply bg-white font-sans text-slate-700 antialiased;
 }
