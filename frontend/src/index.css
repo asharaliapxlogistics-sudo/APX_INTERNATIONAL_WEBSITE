@@ -35,18 +35,26 @@
 }
 
 /* Decorative blur glows overflow their sections; iOS Safari would otherwise
-   widen the page and zoom out. `clip` (unlike `hidden`) keeps sticky working. */
+   widen the page and zoom out. Older Safari (iOS 15 and before) only knows `hidden`;
+   newer browsers get `clip`, which (unlike `hidden`) keeps sticky working.
+   Separate blocks, so the minifier cannot merge away the fallback. */
 html,
 body {
   overflow-x: hidden;
-  overflow-x: clip;
   max-width: 100%;
 }
 
-/* Also clip at the app root: iOS Safari sizes the page from its content, not from html/body. */
-#root {
-  overflow-x: clip;
-  max-width: 100vw;
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /* Also clip at the app root: iOS Safari sizes the page from its content, not from html/body. */
+  #root {
+    overflow-x: clip;
+    max-width: 100vw;
+  }
 }
 
 body {
