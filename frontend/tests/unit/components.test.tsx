@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TrackingMap from '../../src/components/TrackingMap'
 import WhatsAppButton from '../../src/components/WhatsAppButton'
+import JfkGateway from '../../src/components/JfkGateway'
 import Footer from '../../src/components/Footer'
 import Navbar from '../../src/components/Navbar'
 import { mockShipment } from '../../src/lib/mockTracking'
@@ -32,6 +33,19 @@ describe('TrackingMap', () => {
   it('TC-U26: hides the map for a city it has no position for', () => {
     const { container } = render(<TrackingMap result={{ ...mockShipment('APX20490'), destination: 'Atlantis, XX' }} />)
     expect(container).toBeEmptyDOMElement()
+  })
+})
+
+describe('JfkGateway', () => {
+  it('TC-U35: shows the JFK section with the US branch office and a USA quote link', () => {
+    renderAt(<JfkGateway />)
+    expect(screen.getByRole('heading', { name: 'Pakistan to New York, via JFK' })).toBeInTheDocument()
+    expect(screen.getByText('John F. Kennedy International Airport, New York')).toBeInTheDocument()
+    expect(screen.getByText(/US branch office in Kingwood, TX is on hand/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Get a USA quote/ })).toHaveAttribute(
+      'href',
+      '/contact?service=International%20Courier',
+    )
   })
 })
 

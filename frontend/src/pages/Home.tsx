@@ -21,6 +21,7 @@ import SectionTitle from '../components/SectionTitle'
 import Counter from '../components/Counter'
 import PortalMockup from '../components/PortalMockup'
 import VideoShowcase from '../components/VideoShowcase'
+import JfkGateway from '../components/JfkGateway'
 import { company, services, stats } from '../data/site'
 
 const trust = [
@@ -294,6 +295,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ───────── USA GATEWAY (JFK) ───────── */}
+      <JfkGateway />
 
       {/* ───────── VIDEO ───────── */}
       <VideoShowcase />
