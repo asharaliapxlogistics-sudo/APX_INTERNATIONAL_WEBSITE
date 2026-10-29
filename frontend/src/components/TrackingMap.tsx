@@ -33,7 +33,28 @@ const ROUTE_POSITION: Record<string, number> = {
 type Pt = { x: number; y: number }
 const lerp = (a: Pt, b: Pt, t: number): Pt => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t })
 
-const cityOf = (place: string) => CITIES[place.split(',')[0].trim()]
+// Other names the ERP may use for a place on the map (lower case)
+const ALIASES: Record<string, string> = {
+  jfk: 'New York',
+  'jfk airport': 'New York',
+  'new york jfk': 'New York',
+  'new york (jfk)': 'New York',
+  'john f kennedy airport': 'New York',
+  'john f. kennedy airport': 'New York',
+  'john f kennedy international airport': 'New York',
+  'john f. kennedy international airport': 'New York',
+  nyc: 'New York',
+}
+
+function cityOf(place: string) {
+  const name = place.split(',')[0].trim()
+  const lower = name.toLowerCase()
+  const match =
+    Object.keys(CITIES).find((c) => c.toLowerCase() === lower) ??
+    ALIASES[lower] ??
+    (/\bjfk\b|kennedy/.test(lower) ? 'New York' : undefined)
+  return match ? CITIES[match] : undefined
+}
 
 export default function TrackingMap({ result }: { result: TrackingResult }) {
   const from = cityOf(result.origin)

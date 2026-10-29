@@ -30,10 +30,10 @@ export const locations = [
   },
   {
     key: 'newyork',
-    city: 'New York',
+    city: 'New York (JFK)',
     country: 'United States',
     flag: 'us',
-    short: 'USA',
+    short: 'USA · JFK',
     role: 'Warehouse',
     x: 36.5,
     y: 20.78,

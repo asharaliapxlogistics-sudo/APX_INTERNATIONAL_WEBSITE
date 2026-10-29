@@ -5,7 +5,7 @@ import { CheckCircle2, Package, Plane } from 'lucide-react'
 const hubs = [
   { x: 420, y: 255, label: 'Pakistan', main: true, lx: 12, ly: 22 },
   { x: 255, y: 150, label: 'London', main: true, lx: 10, ly: -12 },
-  { x: 135, y: 280, label: 'New York', main: true, lx: 10, ly: 22 },
+  { x: 135, y: 280, label: 'New York (JFK)', main: true, lx: 10, ly: 22 },
   { x: 108, y: 212, label: 'Toronto', main: true, lx: 10, ly: -12 },
 ]
 

@@ -70,6 +70,7 @@ The end-to-end HTML report is saved to `playwright-report/` (open `index.html`).
 | TC-U24 | Tracking map, shipment in transit | Origin, destination, status and "50% of the way" |
 | TC-U25 | Tracking map, delivered shipment | "Delivered", 100% |
 | TC-U26 | Tracking map, unknown city | Map is hidden (no broken map) |
+| TC-U34 | Tracking map, destination "JFK Airport" | Map shows the route to New York with the JFK label |
 | TC-U27 | WhatsApp button | Opens menu with Pakistan and UK WhatsApp links and a pre-filled message |
 | TC-U28 | Navbar | All main links, Resources and Customer Portal |
 | TC-U29 | Services mega menu | Opens on hover with all 4 services and the quote card |

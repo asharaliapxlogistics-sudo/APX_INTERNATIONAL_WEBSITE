@@ -23,6 +23,12 @@ describe('TrackingMap', () => {
     expect(screen.getByText('100% of the way')).toBeInTheDocument()
   })
 
+  it('TC-U34: shows JFK airport as New York on the map', () => {
+    render(<TrackingMap result={{ ...mockShipment('APX20490'), destination: 'JFK Airport, US' }} />)
+    expect(screen.getByText('JFK Airport')).toBeInTheDocument()
+    expect(screen.getByText('Karachi')).toBeInTheDocument()
+  })
+
   it('TC-U26: hides the map for a city it has no position for', () => {
     const { container } = render(<TrackingMap result={{ ...mockShipment('APX20490'), destination: 'Atlantis, XX' }} />)
     expect(container).toBeEmptyDOMElement()
